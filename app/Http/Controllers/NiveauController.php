@@ -53,16 +53,13 @@ class NiveauController extends Controller
     // DELETE
     public function destroy(Niveau $niveau)
     {
-        if ($niveau->sousNiveaux()->exists()) {
-            return back()->withErrors(
-                'Impossible de supprimer : contient des sous-niveaux.'
-            );
+        try {
+            $niveau->delete();
+
+            return back()->with('success', 'Niveau supprimé.');
+        } catch (\Exception $e) {
+            return back()->withErrors($e->getMessage());
         }
-
-        $niveau->delete();
-
-        return redirect()->route('niveaux.index')
-            ->with('success', 'Niveau supprimé.');
     }
 
     // ===============================
@@ -103,8 +100,12 @@ class NiveauController extends Controller
 
     public function destroySousNiveau(SousNiveau $sousNiveau)
     {
-        $sousNiveau->delete();
+        try {
+            $sousNiveau->delete();
 
-        return back()->with('success', 'Sous-niveau supprimé.');
+            return back()->with('success', 'Sous niveau supprimé.');
+        } catch (\Exception $e) {
+            return back()->withErrors($e->getMessage());
+        }
     }
 }

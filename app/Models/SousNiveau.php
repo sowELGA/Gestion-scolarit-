@@ -8,10 +8,24 @@ class SousNiveau extends Model
 {
     protected $fillable = ['code', 'nom', 'niveau_id'];
 
+    // ===============================
+    // Relations
+    // ===============================
+
     public function niveau()
     {
         return $this->belongsTo(Niveau::class);
     }
+
+    // FIX : relation nécessaire pour la protection à la suppression
+    public function classes()
+    {
+        return $this->hasMany(Classe::class);
+    }
+
+    // ===============================
+    // Hooks
+    // ===============================
 
     protected static function booted()
     {
@@ -38,6 +52,15 @@ class SousNiveau extends Model
 
             $sousNiveau->code = strtoupper($sousNiveau->code);
             $sousNiveau->nom  = ucfirst(strtolower($sousNiveau->nom));
+        });
+
+        // FIX : protection suppression — empêche de supprimer un sous-niveau lié à des classes
+        static::deleting(function ($sousNiveau) {
+            if ($sousNiveau->classes()->exists()) {
+                throw new \Exception(
+                    "Impossible de supprimer : ce sous-niveau est associé à des classes."
+                );
+            }
         });
     }
 }

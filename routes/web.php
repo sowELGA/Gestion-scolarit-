@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\TarifController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('filieres', FiliereController::class);
 
@@ -28,3 +28,13 @@ Route::get('sous-niveaux/{sousNiveau}/edit',[NiveauController::class, 'editSousN
     ->name('sousNiveaux.edit');
 
 Route::resource('tarifs', TarifController::class);
+
+// CRUD standard des classes
+Route::resource('classes', ClasseController::class)
+    ->parameters(['classes' => 'classe']);
+
+Route::prefix('classes/{classe}')->name('classes.')->group(function () {
+    Route::get('tarif/create',  [ClasseController::class, 'tarifCreate'])->name('tarif.create');
+    Route::post('tarif',        [ClasseController::class, 'tarifStore'])->name('tarif.store');
+    Route::get('historique',    [ClasseController::class, 'historique'])->name('historique');
+});

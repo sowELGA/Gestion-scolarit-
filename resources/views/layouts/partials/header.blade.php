@@ -1,7 +1,7 @@
 <header class="bg-white shadow-sm px-8 py-5 flex justify-between items-center">
 
     <h1 class="text-2xl font-bold text-gray-700 tracking-wide">
-        @yield('title', 'Dashboard')
+        @yield('title', 'Tableau de bord')
     </h1>
 
     <div class="flex items-center gap-4">

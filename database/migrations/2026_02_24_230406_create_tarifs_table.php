@@ -16,7 +16,7 @@ return new class extends Migration
             $table->decimal('inscription', 10, 2);
             $table->decimal('mensualite', 10, 2);
             $table->decimal('autre_frais', 10, 2)->default(0);
-            $table->boolean('actif')->default(true);
+            $table->boolean('actif')->default(false);
             $table->timestamps();
         });
     }

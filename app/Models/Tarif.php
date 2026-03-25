@@ -10,7 +10,8 @@ class Tarif extends Model
         'inscription',
         'mensualite',
         'autre_frais',
-        'actif'
+        // FIX : 'actif' retiré du fillable — il ne doit jamais être assigné manuellement
+        // Il passe à true automatiquement quand le tarif est rattaché à une classe
     ];
 
     protected $casts = [
@@ -32,7 +33,7 @@ class Tarif extends Model
     }
 
     // ===============================
-    // Scope
+    // Scopes
     // ===============================
 
     public function scopeActif($query)
@@ -40,16 +41,28 @@ class Tarif extends Model
         return $query->where('actif', true);
     }
 
+    public function scopeInactif($query)
+    {
+        return $query->where('actif', false);
+    }
+
+    // ===============================
+    // Hooks
+    // ===============================
+
     protected static function booted()
     {
-        static::deleting(function ($tarif) {
+        // FIX : à la création, actif est toujours false — il devient true via ClasseController
+        static::creating(function ($tarif) {
+            $tarif->actif = false;
+        });
 
+        static::deleting(function ($tarif) {
             if ($tarif->classes()->exists()) {
                 throw new \Exception(
                     'Impossible de supprimer : ce tarif est associé à une classe.'
                 );
             }
-
         });
     }
 }

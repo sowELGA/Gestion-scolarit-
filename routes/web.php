@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnneeAcademiqueController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FiliereController;
@@ -24,7 +25,7 @@ Route::delete('sous-niveaux/{sousNiveau}', [NiveauController::class, 'destroySou
 Route::get('niveaux/{niveau}/sous-niveaux/create', [NiveauController::class, 'createSousNiveau'])
     ->name('niveaux.sousNiveaux.create');
 
-Route::get('sous-niveaux/{sousNiveau}/edit',[NiveauController::class, 'editSousNiveau'])
+Route::get('sous-niveaux/{sousNiveau}/edit', [NiveauController::class, 'editSousNiveau'])
     ->name('sousNiveaux.edit');
 
 Route::resource('tarifs', TarifController::class);
@@ -38,3 +39,12 @@ Route::prefix('classes/{classe}')->name('classes.')->group(function () {
     Route::post('tarif',        [ClasseController::class, 'tarifStore'])->name('tarif.store');
     Route::get('historique',    [ClasseController::class, 'historique'])->name('historique');
 });
+
+Route::resource('annees', AnneeAcademiqueController::class)
+    ->parameters(['annees' => 'annee']);
+
+// Transition de statut (Brouillon → Publié → ... → Clôturée)
+Route::patch(
+    'annees/{annee}/avancer',
+    [AnneeAcademiqueController::class, 'avancer']
+)->name('annees.avancer');

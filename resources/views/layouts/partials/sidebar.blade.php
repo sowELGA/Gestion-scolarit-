@@ -24,6 +24,7 @@
         @php
             $menuItems = [
                 ['label' => 'Tableau de bord', 'route' => 'dashboard', 'icon' => '🏠'],
+                ['label' => 'Années Académiques', 'route' => 'annees.index', 'icon' => '📅'],
                 ['label' => 'Filières', 'route' => 'filieres.index', 'icon' => '📘'],
                 ['label' => 'Niveaux', 'route' => 'niveaux.index', 'icon' => '🎓'],
                 ['label' => 'Classes', 'route' => 'classes.index', 'icon' => '🏫'],

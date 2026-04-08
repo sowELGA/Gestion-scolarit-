@@ -20,7 +20,7 @@ return new class extends Migration
                 ->collation('utf8mb4_unicode_ci');
 
             $table->foreignId('niveau_id')
-                ->constrained()
+                ->constrained('niveaux')
                 ->cascadeOnDelete();
 
             $table->timestamps();

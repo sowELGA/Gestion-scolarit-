@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('nom')->unique();
             $table->foreignId('filiere_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('sous_niveau_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('sous_niveau_id')->constrained('sous_niveaux')->cascadeOnDelete();
             $table->timestamps();
         });
     }

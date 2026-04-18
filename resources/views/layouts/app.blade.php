@@ -8,20 +8,24 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-gray-100 font-sans antialiased">
+{{-- FIX : overflow-hidden sur body pour bloquer le scroll global --}}
 
-    <div class="flex min-h-screen">
+<body class="bg-gray-100 font-sans antialiased overflow-hidden h-screen">
+
+    {{-- FIX : h-screen pour que le conteneur prenne exactement la hauteur de l'écran --}}
+    <div class="flex h-screen">
 
         {{-- Sidebar --}}
         @include('layouts.partials.sidebar')
 
-        <div class="flex-1 flex flex-col">
+        {{-- Contenu principal scrollable --}}
+        <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
 
             {{-- Header --}}
             @include('layouts.partials.header')
 
-            {{-- Contenu --}}
-            <main class="flex-1 p-8">
+            {{-- FIX : overflow-y-auto ici uniquement — seul le contenu scrolle --}}
+            <main class="flex-1 overflow-y-auto p-8">
                 <div class="max-w-7xl mx-auto">
                     @yield('content')
                 </div>

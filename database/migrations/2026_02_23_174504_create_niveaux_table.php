@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('niveaux', function (Blueprint $table) {
             $table->id();
-            $table->string('nom')->unique()->collation('utf8mb4_unicode_ci');
+            $table->string('nom')->unique();
             $table->timestamps();
         });
     }

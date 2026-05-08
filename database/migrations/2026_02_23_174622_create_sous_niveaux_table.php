@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('sous_niveaux', function (Blueprint $table) {
             $table->id();
-            $table->string('code')
-                ->collation('utf8mb4_unicode_ci');
+            $table->string('code');
 
-            $table->string('nom')
-                ->collation('utf8mb4_unicode_ci');
+            $table->string('nom');
 
             $table->foreignId('niveau_id')
                 ->constrained('niveaux')

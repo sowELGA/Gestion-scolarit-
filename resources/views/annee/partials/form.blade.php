@@ -105,21 +105,3 @@
 
     </div>
 </div>
-
-{{-- Délai changement de classe --}}
-<div class="border-t border-gray-100 pt-6">
-    <label class="block text-sm font-semibold text-gray-700 mb-2">
-        Délai de changement de classe (jours)
-        <span class="text-xs font-normal text-gray-400 ml-1">après clôture des inscriptions — concerne les L1</span>
-    </label>
-    <input type="number" name="delai_changement_classe"
-        value="{{ old('delai_changement_classe', $annee->delai_changement_classe ?? 15) }}" min="1"
-        max="60"
-        class="w-40 rounded-lg border border-gray-300 px-4 py-2
-                  focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                  transition outline-none
-                  @error('delai_changement_classe') border-red-400 @enderror">
-    @error('delai_changement_classe')
-        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-    @enderror
-</div>

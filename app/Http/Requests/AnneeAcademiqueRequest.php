@@ -53,13 +53,6 @@ class AnneeAcademiqueRequest extends FormRequest
                 'after:date_ouverture',
                 'before:date_fermeture',
             ],
-
-            'delai_changement_classe' => [
-                'nullable',
-                'integer',
-                'min:1',
-                'max:60',
-            ],
         ];
     }
 
@@ -85,9 +78,6 @@ class AnneeAcademiqueRequest extends FormRequest
             'date_fin_inscription.after:date_ouverture'
             => 'La clôture des inscriptions doit être après l\'ouverture de l\'école.',
             'date_fin_inscription.before'      => 'La clôture des inscriptions doit être avant la fermeture de l\'école.',
-
-            'delai_changement_classe.min'      => 'Le délai doit être d\'au moins 1 jour.',
-            'delai_changement_classe.max'      => 'Le délai ne peut pas dépasser 60 jours.',
         ];
     }
 }

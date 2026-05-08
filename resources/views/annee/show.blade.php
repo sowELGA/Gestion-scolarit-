@@ -137,27 +137,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Paramètres --}}
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:col-span-2">
-                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">Paramètres</p>
-                <div class="flex gap-8">
-                    <div>
-                        <p class="text-xs text-gray-400 mb-1">Délai changement de classe (L1)</p>
-                        <p class="text-xl font-bold text-gray-800">
-                            {{ $annee->delai_changement_classe }}
-                            <span class="text-sm font-normal text-gray-500">jours après clôture des inscriptions</span>
-                        </p>
-                    </div>
-                    <div>
-                        <p class="text-xs text-gray-400 mb-1">Créé par</p>
-                        <p class="text-sm font-medium text-gray-700">
-                            {{ $annee->createdBy->name ?? '—' }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
     </div>

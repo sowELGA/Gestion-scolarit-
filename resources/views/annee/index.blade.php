@@ -50,9 +50,6 @@
                             {{-- Code --}}
                             <td class="px-6 py-4">
                                 <p class="font-semibold text-gray-800">{{ $annee->code }}</p>
-                                <p class="text-xs text-gray-400 mt-0.5">
-                                    Délai changement : {{ $annee->delai_changement_classe }} j.
-                                </p>
                             </td>
 
                             {{-- Dates école --}}

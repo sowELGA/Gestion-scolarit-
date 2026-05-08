@@ -36,7 +36,6 @@ class AnneeAcademique extends Model
         'date_fermeture',
         'date_debut_inscription',
         'date_fin_inscription',
-        'delai_changement_classe',
         'statut',
     ];
 

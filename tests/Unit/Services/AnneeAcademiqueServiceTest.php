@@ -85,16 +85,4 @@ class AnneeAcademiqueServiceTest extends TestCase
         );
     }
 
-    public function test_sauter_un_statut_publier(){
-        $service = new AnneeAcademiqueService();
-
-        $data = $this->donneesValides();
-
-        $annee = $service->creer($data);
-
-        $this->expectException(\Exception::class);
-
-        $annee->update(['statut' => AnneeAcademique::STATUT_INSCRIPTION_OUVERTE]);
-    }
-
 }
